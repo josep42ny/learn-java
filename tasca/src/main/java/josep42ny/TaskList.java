@@ -11,16 +11,22 @@ public class TaskList {
         this.tasks = new ArrayList<Task>();
     }
 
-    public void push(Task task) {
+    public void add(Task task) {
         tasks.add(task);
     }
 
-    public void pop() {
-        tasks.removeLast();
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     public void remove(int index) throws IndexOutOfBoundsException {
         tasks.remove(index > 0 ? index : tasks.size() - index);
     }
 
+    @Override
+    public String toString() {
+        return "TaskList{" +
+                "tasks=" + tasks +
+                '}';
+    }
 }
