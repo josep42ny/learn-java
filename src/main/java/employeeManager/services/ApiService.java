@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 
 public class ApiService {
 
-    private final static String API_ROOT_URI = "https://randomuser.me/api/";
+    private final static String API_ROOT_URI = "https://randomuser.me/api/?seed=foobar";
     private final HttpClient httpClient;
     private final Gson gson;
 
@@ -21,7 +21,7 @@ public class ApiService {
     }
 
     public ApiResponse getResults(int amount) {
-        URI API_ENDPOINT = URI.create(API_ROOT_URI + "?results=" + amount);
+        URI API_ENDPOINT = URI.create(API_ROOT_URI + "&results=" + amount);
         try {
             HttpRequest request = HttpRequest.newBuilder(API_ENDPOINT).GET().build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

@@ -19,9 +19,13 @@ public class EmployeeDaoApiImplementation implements EmployeeDao {
         List<Result> results = response.getResults();
         return results.stream()
                 .map(person ->
-                    new Manager(
-                            person.getName()
-                    )
+                        new Manager(
+                                person.getName(),
+                                person.getPicture(),
+                                person.getAge(),
+                                person.getSex(),
+                                person.getCountry()
+                        )
                 )
                 .toList();
     }
@@ -33,7 +37,11 @@ public class EmployeeDaoApiImplementation implements EmployeeDao {
         return results.stream()
                 .map(person ->
                         new Developer(
-                                person.getName()
+                                person.getName(),
+                                person.getPicture(),
+                                person.getAge(),
+                                person.getSex(),
+                                person.getCountry()
                         )
                 )
                 .toList();
