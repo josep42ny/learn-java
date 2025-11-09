@@ -20,9 +20,28 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        String rawId = request.getParameter("name");
+        String rawId = request.getParameter("id");
 
-        request.setAttribute("movies", movies);
+        if (rawId == null) {
+            request.setAttribute("movies", movies);
+        } else {
+            int id;
+            try {
+                id = Integer.parseInt(rawId);
+            } catch (NumberFormatException e) {
+                id = -1;
+            }
+
+            int finalId = id;
+            boolean idFound = movies.stream().anyMatch(m->m.getId() == finalId);
+            if (idFound) {
+                Movie movie = movies.stream().filter(m->m.getId() == finalId).findFirst().get();
+                List<Movie> movie1 = List.of(movie);
+                request.setAttribute("movies", movie1);
+            } else {
+                request.setAttribute("movies", null);
+            }
+        }
 
         request.getRequestDispatcher("movies.jsp").forward(request, response);
     }

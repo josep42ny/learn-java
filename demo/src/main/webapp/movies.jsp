@@ -14,15 +14,19 @@
 </head>
 <body>
 <ul>
-
-    <c:forEach var="movie" items="${(List<Movie>) request.getAttribute('movies')}">
-    <li>
-            <c:out value="${movie.getTitle() + ' (' + movie.getYear() + ')'}"/>
+    <% List<Movie> movies = (List<Movie>) request.getAttribute("movies"); %>
+    <c:if test="${movies != null}">
+        <c:forEach var="movie" items="${movies}">
+            <li>
+                ${movie.getTitle()} (${movie.getYear()})
+            </li>
         </c:forEach>
-        <%--            <% for (Movie movie : (List<Movie>) request.getAttribute("movies")) {%>--%>
-        <%--    <li><%= movie.getTitle() + " (" + movie.getYear() + ")" %>--%>
-        <%--    </li>--%>
-        <%--    <% }%>--%>
+    </c:if>
+    <c:if test="${movies == null}">
+        <li>
+            No movie found.
+        </li>
+    </c:if>
 </ul>
 </body>
 </html>
