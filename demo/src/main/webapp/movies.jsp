@@ -11,29 +11,29 @@
 <html>
 <head>
     <title>Hello</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 <body>
 <table>
     <thead>
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Synopsis</th>
-            <th>Year</th>
-        </tr>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Synopsis</th>
+        <th>Year</th>
+    </tr>
     </thead>
     <tbody>
-        <c:if test="${movies != null}">
-            <c:forEach var="movie" items="${movies}">
-                <tr>
-                    <td>${movie.id}</td>
-                    <td>${movie.title}</td>
-                    <td>${movie.description}</td>
-                    <td>${movie.year}</td>
-                </tr>
-            </c:forEach>
-        </c:if>
+    <c:if test="${movies != null}">
+        <c:forEach var="movie" items="${movies}">
+            <tr>
+                <td>${movie.id}</td>
+                <td>${movie.title}</td>
+                <td>${movie.description}</td>
+                <td>${movie.year}</td>
+            </tr>
+        </c:forEach>
+    </c:if>
     </tbody>
 </table>
 <ul>

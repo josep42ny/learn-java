@@ -14,7 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name    = "movieServlet", value = "/movies")
+@WebServlet(name = "movieServlet", value = "/movies")
 public class MovieServlet extends HttpServlet {
 
     private MovieService service;
@@ -23,24 +23,8 @@ public class MovieServlet extends HttpServlet {
         this.service = MovieServiceFactory.create();
     }
 
-    private void showAllMovies(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
-        List<Movie> movies = new ArrayList<>();
-
-        Connection connection = JdbcConnector.connection();
-        PreparedStatement statement = connection.prepareStatement("select * from movies;");
-        ResultSet resultSet = statement.executeQuery();
-
-        while (resultSet.next()) {
-            long movieId = resultSet.getLong("id");
-            String movieTitle = resultSet.getString("title");
-            String movieDescription = resultSet.getString("description");
-            int movieYear = resultSet.getInt("year");
-
-            movies.add(new Movie(movieId, movieTitle, movieDescription, movieYear));
-        }
-        connection.close();
-
-        request.setAttribute("movies", movies);
+    private void showAllMovies(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setAttribute("movies", service.getMovies());
         request.getRequestDispatcher("movies.jsp").forward(request, response);
     }
 
@@ -54,7 +38,6 @@ public class MovieServlet extends HttpServlet {
 
         Movie movie = this.service.getById(id);
         request.setAttribute("movies", movie == null ? null : List.of(movie));
-
         request.getRequestDispatcher("movies.jsp").forward(request, response);
     }
 
@@ -63,11 +46,7 @@ public class MovieServlet extends HttpServlet {
         String rawId = request.getParameter("id");
 
         if (rawId == null) {
-            try {
-                showAllMovies(request, response);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            showAllMovies(request, response);
         } else {
             showMovie(rawId, request, response);
         }
