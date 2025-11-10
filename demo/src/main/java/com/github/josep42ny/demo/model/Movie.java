@@ -1,17 +1,28 @@
 package com.github.josep42ny.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "movies")
 public class Movie {
 
-    long id;
-    String title;
-    String description;
-    int year;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String title;
+    private String description;
+    private int year;
+    transient private float rating;
 
     public Movie(long id, String title, String description, int year) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.year = year;
+    }
+
+    public Movie() {
+
     }
 
     public long getId() {

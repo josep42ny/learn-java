@@ -14,34 +14,56 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Synopsis</th>
-        <th>Year</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:if test="${movies != null}">
-        <c:forEach var="movie" items="${movies}">
-            <tr>
-                <td>${movie.id}</td>
-                <td>${movie.title}</td>
-                <td>${movie.description}</td>
-                <td>${movie.year}</td>
-            </tr>
-        </c:forEach>
-    </c:if>
-    </tbody>
-</table>
-<ul>
-    <c:if test="${movies == null}">
-        <li>
-            No movie found.
-        </li>
-    </c:if>
-</ul>
+<main class="container">
+    <div class="grid">
+        <div>
+            <h2>Movies</h2>
+            <p>List of movies</p>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Synopsis</th>
+                    <th>Year</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:if test="${movies != null}">
+                    <c:forEach var="movie" items="${movies}">
+                        <tr>
+                            <td>${movie.id}</td>
+                            <td>${movie.title}</td>
+                            <td>${movie.description}</td>
+                            <td>${movie.year}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${movies == null}">
+                    <tr>
+                        <td colspan="4">No movie found.</td>
+                    </tr>
+                </c:if>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h2>Add movie</h2>
+            <p>Insert new movie</p>
+            <form action="movies" method="POST">
+                <label> Movie title
+                    <input type="text" name="title">
+                </label>
+
+                <label> Short synopsis
+                    <textarea name="description">
+            </textarea>
+                </label>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</main>
 </body>
 </html>

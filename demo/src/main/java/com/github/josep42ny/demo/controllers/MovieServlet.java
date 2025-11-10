@@ -52,6 +52,11 @@ public class MovieServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getParameter("title");
+    }
+
     public void destroy() {
     }
 }
