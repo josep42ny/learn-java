@@ -12,13 +12,20 @@
 <head>
     <title>Hello</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        :root {
+            --pico-font-size: 1rem;
+        }
+    </style>
 </head>
 <body>
 <main class="container">
-    <div class="grid">
-        <div>
+    <section>
+        <hgroup>
             <h2>Movies</h2>
             <p>List of movies</p>
+        </hgroup>
+        <article>
             <table>
                 <thead>
                 <tr>
@@ -46,11 +53,15 @@
                 </c:if>
                 </tbody>
             </table>
-        </div>
-
-        <div>
+        </article>
+    </section>
+    <br>
+    <section>
+        <hgroup>
             <h2>Add movie</h2>
             <p>Insert new movie</p>
+        </hgroup>
+        <article>
             <form action="movies" method="POST">
                 <label> Movie title
                     <input type="text" name="title">
@@ -62,8 +73,11 @@
                 </label>
                 <button type="submit">Save</button>
             </form>
-        </div>
-    </div>
+        </article>
+    </section>
 </main>
+<footer class="container">
+    <small>Josep Fortuny Ferreiro</small>
+</footer>
 </body>
 </html>

@@ -66,6 +66,23 @@ public class MovieServiceJdbcImpl implements MovieService {
     @Override
     public boolean addMovie(Movie movie) {
         return false;
+//        try {
+//            Connection connection = JdbcConnector.connection();
+//            PreparedStatement statement = connection.prepareStatement("insert into movies(id, title, description, year) values ");
+//            statement.setLong(1, id);
+//            resultSet = statement.executeQuery();
+//
+//            resultSet.next();
+//            long movieId = resultSet.getLong("id");
+//            String movieTitle = resultSet.getString("title");
+//            String movieDescription = resultSet.getString("description");
+//            int movieYear = resultSet.getInt("year");
+//
+//            movie = new Movie(movieId, movieTitle, movieDescription, movieYear);
+//            connection.close();
+//        } catch (SQLException e) {
+//            return null;
+//        }
     }
 
     @Override
