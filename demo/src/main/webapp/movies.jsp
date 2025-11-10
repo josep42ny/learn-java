@@ -11,17 +11,32 @@
 <html>
 <head>
     <title>Hello</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Synopsis</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:if test="${movies != null}">
+            <c:forEach var="movie" items="${movies}">
+                <tr>
+                    <td>${movie.id}</td>
+                    <td>${movie.title}</td>
+                    <td>${movie.description}</td>
+                    <td>${movie.year}</td>
+                </tr>
+            </c:forEach>
+        </c:if>
+    </tbody>
+</table>
 <ul>
-    <% List<Movie> movies = (List<Movie>) request.getAttribute("movies"); %>
-    <c:if test="${movies != null}">
-        <c:forEach var="movie" items="${movies}">
-            <li>
-                ${movie.getTitle()} (${movie.getYear()})
-            </li>
-        </c:forEach>
-    </c:if>
     <c:if test="${movies == null}">
         <li>
             No movie found.

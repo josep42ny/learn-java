@@ -2,23 +2,23 @@ package com.github.josep42ny.demo.model;
 
 public class Movie {
 
-    int id;
+    long id;
     String title;
     String description;
     int year;
 
-    public Movie(int id, String title, String description, int year) {
+    public Movie(long id, String title, String description, int year) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.year = year;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

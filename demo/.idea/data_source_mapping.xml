@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/movies.sql" value="83235e73-39db-4c2a-9f97-0f4c31fa4788" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/github/josep42ny/demo/controllers/MovieServlet.java" value="83235e73-39db-4c2a-9f97-0f4c31fa4788" />
+  </component>
+</project>
